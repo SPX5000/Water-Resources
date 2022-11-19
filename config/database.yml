@@ -4,22 +4,50 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem "sqlite3"
 #
+# https://medium.com/@virtual_khan/converting-rails-from-sqlite3-to-postgresql-d97023314a14 11/19/22
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
+# https://medium.com/@virtual_khan/converting-rails-from-sqlite3-to-postgresql-d97023314a14 11/19/22
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: water_resources_app
+# https://gist.github.com/jwo/4512764 Nov 19/2022
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: water_resources_app
+#   pool: 5
+#   username: wr-user
+#   password: Google1234!
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: db/test.sqlite3
+# test:
+#   <<: *default
+#   database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
+# https://medium.com/@frouster/ruby-on-rails-postgresql-f1b037924bdf
+# Nov 19 2022
+development:
+  adapter: postgresql
+  database: water_resources_app
+  username: wr-user
+  password: Google1234!
+  encoding: unicode
+  host: localhost
+  pool: 5
+test:
+  adapter: postgresql
+  database: water_resources_tests
+  username: wr-user
+  password: Google1234!
+  encoding: unicode
+  host: localhost
+  pool: 5
